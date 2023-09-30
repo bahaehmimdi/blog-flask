@@ -11,16 +11,16 @@ def work():
     category = request.args.get('category')
     return render_template('work.html',category)
 @app.route('/works')
-def homepage():
+def works():
     return render_template('works.html')
 @app.route('/about')
-def homepage():
+def about():
     return render_template('about.html')   
 @app.route('/contact')
-def homepage():
+def contact():
     return render_template('contact.html')        
 @app.route('/thankyou')
-def homepage():
+def thankyou():
     return render_template('thankyou.html')  
 @app.route('/components.html')
 def components():
