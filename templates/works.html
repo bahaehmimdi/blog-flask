@@ -89,7 +89,7 @@
                   <div class="row">
                     <div class="col-sm-4">
                       <a
-                        href="./work.html"
+                        href="{{ url_for('work', category='category1') }}"
                         title=""
                         class="black-image-project-hover"
                       >
@@ -106,14 +106,15 @@
                           Nulla facilisi. Vivamus vestibulum, elit in
                           scelerisque ultricies.
                         </p>
-                        <a href="./work.html" title="" class="btn btn-default"
+                        <a href="{{ url_for('work', category='category1') }}"
+                          title="" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
                     </div>
                     <div class="col-sm-4">
                       <a
-                        href="./work.html"
+                        href="{{ url_for('work', category='category2') }}"
                         title=""
                         class="black-image-project-hover"
                       >
@@ -130,14 +131,14 @@
                           Proin pharetra metus id iaculis dignissim. In aliquet
                           lorem ut ex ullamcorper.
                         </p>
-                        <a href="./work.html" title="" class="btn btn-default"
+                        <a href="{{ url_for('work', category='category2') }}" title="" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
                     </div>
                     <div class="col-sm-4">
                       <a
-                        href="./work.html"
+                        href="{{ url_for('work', category='category3') }}"
                         title=""
                         class="black-image-project-hover"
                       >
@@ -154,7 +155,7 @@
                           Fusce sed hendrerit augue, a rhoncus velit. In non
                           lorem mattis, tempor sem sit amet.
                         </p>
-                        <a href="./work.html" title="" class="btn btn-default"
+                        <a href="{{ url_for('work', category='category3') }}" title="" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
@@ -180,13 +181,13 @@
                           Proin pharetra metus id iaculis dignissim. In aliquet
                           lorem ut ex ullamcorper.
                         </p>
-                        <a href="./work.html" class="btn btn-default"
+                        <a href="{{ url_for('work', category='category4') }}" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
                     </div>
                     <div class="col-sm-4">
-                      <a href="./work.html" class="black-image-project-hover">
+                      <a href="{{ url_for('work', category='category4') }}" class="black-image-project-hover">
                         <img
                           src="static/assets/images/work01-hover.jpg"
                           alt="Image"
@@ -207,7 +208,7 @@
                     </div>
 
                     <div class="col-sm-4">
-                      <a href="./work.html" class="black-image-project-hover">
+                      <a href="{{ url_for('work', category='category5') }}" class="black-image-project-hover">
                         <img
                           src="static/assets/images/work03-hover.jpg"
                           alt="Image"
@@ -221,7 +222,7 @@
                           Fusce sed hendrerit augue, a rhoncus velit. In non
                           lorem mattis, tempor sem sit amet.
                         </p>
-                        <a href="./work.html" class="btn btn-default"
+                        <a href="{{ url_for('work', category='category5') }}" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
