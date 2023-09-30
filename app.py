@@ -9,7 +9,7 @@ def homepage():
 @app.route('/work')
 def work():
     category = request.args.get('category')
-    return render_template('work.html',category)
+    return render_template('work.html',category=category)
 @app.route('/works')
 def works():
     return render_template('works.html')
