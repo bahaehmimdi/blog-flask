@@ -22,9 +22,12 @@ def homepage():
 @app.route('/thankyou')
 def homepage():
     return render_template('thankyou.html')  
- @app.route('/components.html')
+@app.route('/components.html')
 def components():
-    return render_template('components.html')       
+    return render_template('components.html')    
+@app.route('/index.html')
+def index():
+    return render_template('index.html')      
 @app.route('/<string:page_name>')
 def html_page(page_name):
     category = request.args.get('category') 
