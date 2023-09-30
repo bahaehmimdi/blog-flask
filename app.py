@@ -40,7 +40,7 @@ prompt={
        }
 lescategories=eval(chat_with_gpt("generer un code list python de 6 categories du sujet de condoleances sans descrition ou commentaires sans declaration variable"))
 lestext={}
-for i in lescategries:
+for i in lescategories:
  categories["name"]=i
  categories["name"]= chat_with_gpt(categories["category_description_119_15"](i))
  texts={}   
