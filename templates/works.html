@@ -86,9 +86,10 @@
               <!-- Carousel items -->
 <!-- ... previous code ... -->
 <div class="carousel-inner">
-    {% for category in categories %}
-        <div class="item {% if loop.first %}active{% endif %}">
+    <div class="item {% if loop.first %}active{% endif %}">
             <div class="row">
+    {% for category in categories %}
+    
                 <div class="col-sm-4">
                     <a href="{{ url_for('work', category=category.name) }}" class="black-image-project-hover">
                         <img src="{{ url_for('static', filename='assets/images/' + category.image) }}" alt="Image" class="img-responsive" />
@@ -100,9 +101,10 @@
                         <a href="{{ url_for('work', category=category.name) }}" class="btn btn-default">Discover</a>
                     </div>
                 </div>
-            </div>
-        </div>
+           
     {% endfor %}
+	 </div>
+        </div>
 </div>
 <!-- ... remaining code ... -->
 
