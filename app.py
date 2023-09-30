@@ -34,7 +34,7 @@ def work():
 @app.route('/works')
 def works():
    try: 
-    return render_template('works.html', categories=categories)
+    return render_template('works.html', categories1=categories[1],categories2=categories[2],categories3=categories[3],categories4=categories[4],categories5=categories[5])
    except Exception as err:
        return str(err)
 @app.route('/about')
