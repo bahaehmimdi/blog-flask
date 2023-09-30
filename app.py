@@ -1,7 +1,21 @@
 import csv
 from flask import Flask, render_template, url_for, request, redirect
 app = Flask(__name__)
+import openai
 
+# Set your OpenAI API key
+openai.api_key = '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'
+def chat_with_gpt(prompt):
+    prompt = f"generer un text descriptif apropos des condoleances avec un peux pres  244 characteres et 73 mots"
+    print(prompt)
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=150  # Adjust as needed
+    )
+    print(response)
+    return response.choices[0].text.strip()
+    
 
 @app.route('/')
 def homepage():
