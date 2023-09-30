@@ -33,7 +33,10 @@ def work():
     return render_template('work.html',category=category,category_first_description_244_73=category+"category_first_description_244_73",category_second_description_103_30=category+"category_second_description_103_30",category_first_question_28_5=category+"category_first_question_28_5",category_first_answer_276_94=category+"category_first_answer_276_94",category_second_question_41_6=category+"category_second_question_41_6",category_second_answer_345_136=category+"category_second_answer_345_136",category_conclusion_103_33=category+"category_conclusion_103_33")
 @app.route('/works')
 def works():
+   try: 
     return render_template('works.html', categories=categories)
+   except Exception as err:
+       return str(err)
 @app.route('/about')
 def about():
     return render_template('about.html')   
