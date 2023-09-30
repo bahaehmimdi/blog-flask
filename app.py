@@ -2,9 +2,9 @@ import csv
 from flask import Flask, render_template, url_for, request, redirect
 app = Flask(__name__)
 import openai
-
+import time
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = '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'
 def chat_with_gpt(prompt):
    # prompt = f"generer un text descriptif apropos des condoleances avec un peux pres  244 characteres et 73 mots"
     print(prompt)
@@ -13,6 +13,7 @@ def chat_with_gpt(prompt):
         prompt=prompt,
         max_tokens=150  # Adjust as needed
     )
+    time.sleep(2)
     print(response)
     return response.choices[0].text.strip()
     
