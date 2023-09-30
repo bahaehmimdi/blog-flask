@@ -31,7 +31,7 @@ def index():
 @app.route('/<string:page_name>')
 def html_page(page_name):
     category = request.args.get('category') 
-    return url_for(page_name.replace("html",""), category=category) 
+    return url_for(page_name.replace(".html",""), category=category) 
 
 
 # def write_to_file(data):
