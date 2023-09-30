@@ -15,7 +15,12 @@ def chat_with_gpt(prompt):
     )
     print(response)
     return response.choices[0].text.strip()
-    
+categories = [
+    {"name": "Category 1", "description": "Description 1", "image": "work01-hover.jpg"},
+    {"name": "Category 2", "description": "Description 2", "image": "work02-hover.jpg"},
+    {"name": "Category 3", "description": "Description 3", "image": "work03-hover.jpg"},
+    # Add more categories as needed
+]    
 
 @app.route('/')
 def homepage():
@@ -26,7 +31,7 @@ def work():
     return render_template('work.html',category=category,category_first_description_244_73=category+"category_first_description_244_73",category_second_description_103_30=category+"category_second_description_103_30",category_first_question_28_5=category+"category_first_question_28_5",category_first_answer_276_94=category+"category_first_answer_276_94",category_second_question_41_6=category+"category_second_question_41_6",category_second_answer_345_136=category+"category_second_answer_345_136",category_conclusion_103_33=category+"category_conclusion_103_33")
 @app.route('/works')
 def works():
-    return render_template('works.html')
+    return render_template('works.html', categories=categories)
 @app.route('/about')
 def about():
     return render_template('about.html')   
