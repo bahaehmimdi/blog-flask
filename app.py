@@ -6,15 +6,29 @@ app = Flask(__name__)
 @app.route('/')
 def homepage():
     return render_template('index.html')
-
-
+@app.route('/work')
+def work():
+    category = request.args.get('category')
+    return render_template('work.html',category)
+@app.route('/works')
+def homepage():
+    return render_template('works.html')
+@app.route('/about')
+def homepage():
+    return render_template('about.html')   
+@app.route('/contact')
+def homepage():
+    return render_template('contact.html')        
+@app.route('/thankyou')
+def homepage():
+    return render_template('thankyou.html')  
+ @app.route('/components.html')
+def components():
+    return render_template('components.html')       
 @app.route('/<string:page_name>')
 def html_page(page_name):
-   if page_name=="work":
-         category = request.args.get('category')
-         return render_template(page_name,category)
-   else:    
-    return render_template(page_name)
+    category = request.args.get('category') 
+    return url_for(page_namel.replace("html",""), category=category) 
 
 
 # def write_to_file(data):
