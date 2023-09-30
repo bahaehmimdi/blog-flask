@@ -54,8 +54,14 @@ def index():
     return render_template('index.html')      
 @app.route('/<string:page_name>')
 def html_page(page_name):
+ try:   
+  if   page_name=="work.html":
     category = request.args.get('category') 
     return redirect(url_for(page_name.replace(".html",""), category=category)) 
+  else:    
+    return redirect(url_for(page_name.replace(".html",""))) 
+ except Exception as me:
+     return str(me)
 
 
 # def write_to_file(data):
