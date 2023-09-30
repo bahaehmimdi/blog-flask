@@ -26,7 +26,7 @@ categories = [
 
     # Add more categories as needed
 ] 
- prompt={
+prompt={
      "category_description_119_15":lambda category:"generer un text explicatif  de "+category+" avec un peux pres  119 characteres et 15 mots",
      "category_first_description_244_73":lambda category:"generer un text descriptif apropos "+category+" avec un peux pres  244 characteres et 73 mots",
         "category_second_description_103_30":lambda category:"generer un text descriptif apropos "+category+" avec un peux pres  103 characteres et 30 mots",
