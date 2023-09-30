@@ -13,7 +13,7 @@ def chat_with_gpt(prompt):
         prompt=prompt,
         max_tokens=150  # Adjust as needed
     )
-    time.sleep(2)
+    time.sleep(20)
     print(response)
     return response.choices[0].text.strip()
     
