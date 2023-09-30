@@ -6,7 +6,7 @@ import openai
 # Set your OpenAI API key
 openai.api_key = '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'
 def chat_with_gpt(prompt):
-    prompt = f"generer un text descriptif apropos des condoleances avec un peux pres  244 characteres et 73 mots"
+   # prompt = f"generer un text descriptif apropos des condoleances avec un peux pres  244 characteres et 73 mots"
     print(prompt)
     response = openai.Completion.create(
         engine="text-davinci-003",
@@ -15,6 +15,7 @@ def chat_with_gpt(prompt):
     )
     print(response)
     return response.choices[0].text.strip()
+    
 categories = [
     {"name": "Category 1", "description": "Description 1", "image": "work01-hover.jpg"},
     {"name": "Category 2", "description": "Description 2", "image": "work02-hover.jpg"},
@@ -24,7 +25,34 @@ categories = [
     {"name": "Category 6", "description": "Description 6", "image": "work03-hover.jpg"},
 
     # Add more categories as needed
-]    
+] 
+ prompt={
+     "category_description_119_15":lambda category:"generer un text explicatif  de "+category+" avec un peux pres  119 characteres et 15 mots",
+     "category_first_description_244_73":lambda category:"generer un text descriptif apropos "+category+" avec un peux pres  244 characteres et 73 mots",
+        "category_second_description_103_30":lambda category:"generer un text descriptif apropos "+category+" avec un peux pres  103 characteres et 30 mots",
+        "category_introduction_103_33":lambda category:"generer un text introduction  apropos "+category+" avec un peux pres  103 characteres et 33 mots",
+        "category_first_question_28_5":lambda category:"generer une question educatrice  apropos "+category+" avec un peux pres  28 characteres et 5 mots",
+        "category_first_answer_276_94":lambda question:"generer une reponse educatrice  a la question "+question+" avec un peux pres  276 characteres et 94 mots",
+        "category_first_question_41_6":lambda category:"generer une question educatrice  apropos "+category+" avec un peux pres  41 characteres et 6 mots",
+        "category_second_answer_345_136":lambda question:"generer une reponse educatrice  a la question "+question+" avec un peux pres  345 characteres et 136 mots",
+        "category_conclusion_103_33":lambda category:"generer un text conclusion  apropos "+category+" avec un peux pres  103 characteres et 33 mots"
+       }
+lescategories=eval(chat_with_gpt("generer un code list python de 6 categories du sujet de condoleances sans descrition ou commentaires sans declaration variable"))
+lestext={}
+for i in lescategries:
+ categories["name"]=i
+ categories["name"]= chat_with_gpt(categories["category_description_119_15"](i))
+ texts={}   
+ for j in prompt.keys():    
+   if not "answer" in j:  
+    texts[j]=chat_with_gpt(prompt[j](i))
+   else:
+    texts[j]=chat_with_gpt(prompt[j](list(texts.values())[-1]))  
+ lestext[i]["texts"]=texts   
+
+
+
+   
 
 @app.route('/')
 def homepage():
@@ -32,7 +60,8 @@ def homepage():
 @app.route('/work')
 def work():
     category = request.args.get('category')
-    return render_template('work.html',category=category,category_first_description_244_73=category+"category_first_description_244_73",category_second_description_103_30=category+"category_second_description_103_30",category_first_question_28_5=category+"category_first_question_28_5",category_first_answer_276_94=category+"category_first_answer_276_94",category_second_question_41_6=category+"category_second_question_41_6",category_second_answer_345_136=category+"category_second_answer_345_136",category_conclusion_103_33=category+"category_conclusion_103_33")
+    txts=lestext[category]["texts"]
+    return render_template('work.html',category=category,category_first_description_244_73=category+txts["category_first_description_244_73"],category_second_description_103_30=category+txts["category_second_description_103_30"],category_first_question_28_5=category+txts["category_first_question_28_5"],category_first_answer_276_94=category+txts["category_first_answer_276_94"],category_second_question_41_6=category+txts["category_second_question_41_6"],category_second_answer_345_136=category+txts["category_second_answer_345_136"],category_conclusion_103_33=category+txts["category_conclusion_103_33")
 @app.route('/works')
 def works():
    try: 
