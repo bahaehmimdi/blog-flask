@@ -19,8 +19,10 @@ categories = [
     {"name": "Category 1", "description": "Description 1", "image": "work01-hover.jpg"},
     {"name": "Category 2", "description": "Description 2", "image": "work02-hover.jpg"},
     {"name": "Category 3", "description": "Description 3", "image": "work03-hover.jpg"},
-    {"name": "Category 4", "description": "Description 4", "image": "work04-hover.jpg"},
-{"name": "Category 5", "description": "Description 5", "image": "work05-hover.jpg"},
+    {"name": "Category 4", "description": "Description 4", "image": "work01-hover.jpg"},
+{"name": "Category 5", "description": "Description 5", "image": "work02-hover.jpg"},
+    {"name": "Category 6", "description": "Description 6", "image": "work03-hover.jpg"},
+
     # Add more categories as needed
 ]    
 
