@@ -10,6 +10,10 @@ def homepage():
 
 @app.route('/<string:page_name>')
 def html_page(page_name):
+   if page_name=="work":
+         category = request.args.get('category')
+         return render_template(page_name,category)
+   else:    
     return render_template(page_name)
 
 
