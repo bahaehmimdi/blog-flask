@@ -89,7 +89,7 @@
                   <div class="row">
                     <div class="col-sm-4">
                       <a
-                        href="{{ url_for('work', category='category1') }}"
+                        href="{{ url_for('work', category=categories0["name"]) }}"
                         title=""
                         class="black-image-project-hover"
                       >
@@ -105,7 +105,7 @@
                         <p>
                           {{categories0["description"]}}
                         </p>
-                        <a href="{{ url_for('work', category='category1') }}"
+                        <a href="{{ url_for('work', category=categories0["name"]) }}"
                           title="" class="btn btn-default"
                           >Discover</a
                         >
@@ -113,7 +113,7 @@
                     </div>
                     <div class="col-sm-4">
                       <a
-                        href="{{ url_for('work', category='category2') }}"
+                        href="{{ url_for('work', category=categorie1["name"]) }}"
                         title=""
                         class="black-image-project-hover"
                       >
@@ -129,14 +129,14 @@
                         <p>
                          {{categories1["description"]}}
                         </p>
-                        <a href="{{ url_for('work', category='category2') }}" title="" class="btn btn-default"
+                        <a href="{{ url_for('work', category=categories1["name"]) }}" title="" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
                     </div>
                     <div class="col-sm-4">
                       <a
-                        href="{{ url_for('work', category='category3') }}"
+                        href="{{ url_for('work', category=categories2["name"]) }}"
                         title=""
                         class="black-image-project-hover"
                       >
@@ -152,7 +152,7 @@
                         <p>
                           {{categories2["description"]}}
                         </p>
-                        <a href="{{ url_for('work', category='category3') }}" title="" class="btn btn-default"
+                        <a href="{{ url_for('work', category=categories2["name"]) }}" title="" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
@@ -177,13 +177,13 @@
                         <p>
                           {{categories3["description"]}}
                         </p>
-                        <a href="{{ url_for('work', category='category4') }}" class="btn btn-default"
+                        <a href="{{ url_for('work', category=categories3["name"]) }}" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
                     </div>
                     <div class="col-sm-4">
-                      <a href="{{ url_for('work', category='category4') }}" class="black-image-project-hover">
+                      <a href="{{ url_for('work', category=categories4["name"]) }}" class="black-image-project-hover">
                         <img
                           src="static/assets/images/{{categories4["image"]}}"
                           alt="Image"
@@ -196,14 +196,14 @@
                         <p>
                           {{categories4["description"]}}
                         </p>
-                        <a href="./work.html" class="btn btn-default"
+                        <a href="{{ url_for('work', category=categories4["name"]) }}" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
                     </div>
 
                     <div class="col-sm-4">
-                      <a href="{{ url_for('work', category='category5') }}" class="black-image-project-hover">
+                      <a href="{{ url_for('work', category=categories5["name"]) }}" class="black-image-project-hover">
                         <img
                           src="static/assets/images/{{categories5["image"]}}"
                           alt="Image"
@@ -216,7 +216,7 @@
                         <p>
                           {{categories5["description"]}}
                         </p>
-                        <a href="{{ url_for('work', category='category5') }}" class="btn btn-default"
+                        <a href="{{ url_for('work', category=categories5["name"]) }}" class="btn btn-default"
                           >Discover</a
                         >
                       </div>
