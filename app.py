@@ -4,7 +4,7 @@ app = Flask(__name__)
 import openai
 import time
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = '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'
 def chat_with_gpt(prompt):
    # prompt = f"generer un text descriptif apropos des condoleances avec un peux pres  244 characteres et 73 mots"
     print(prompt)
