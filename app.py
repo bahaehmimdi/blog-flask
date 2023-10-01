@@ -1,21 +1,9 @@
 import csv
 from flask import Flask, render_template, url_for, request, redirect
 app = Flask(__name__)
-import openai
+
 import time
-# Set your OpenAI API key
-openai.api_key = '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'
-def chat_with_gpt(prompt):
-   # prompt = f"generer un text descriptif apropos des condoleances avec un peux pres  244 characteres et 73 mots"
-    print(prompt)
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=150  # Adjust as needed
-    )
-    time.sleep(61)
-    print(response)
-    return response.choices[0].text.strip()
+
     
 categories = [
     {"name": "Category 1", "description": "Description 1", "image": "work01-hover.jpg"},
@@ -27,29 +15,13 @@ categories = [
 
     # Add more categories as needed
 ] 
-prompt={
-     "category_description_119_15":lambda category:"generer un text explicatif  de "+category+" avec un peux pres  119 characteres et 15 mots",
-     "category_first_description_244_73":lambda category:"generer un text descriptif apropos "+category+" avec un peux pres  244 characteres et 73 mots",
-        "category_second_description_103_30":lambda category:"generer un text descriptif apropos "+category+" avec un peux pres  103 characteres et 30 mots",
-        "category_introduction_103_33":lambda category:"generer un text introduction  apropos "+category+" avec un peux pres  103 characteres et 33 mots",
-        "category_first_question_28_5":lambda category:"generer une question educatrice  apropos "+category+" avec un peux pres  28 characteres et 5 mots",
-        "category_first_answer_276_94":lambda question:"generer une reponse educatrice  a la question "+question+" avec un peux pres  276 characteres et 94 mots",
-        "category_first_question_41_6":lambda category:"generer une question educatrice  apropos "+category+" avec un peux pres  41 characteres et 6 mots",
-        "category_second_answer_345_136":lambda question:"generer une reponse educatrice  a la question "+question+" avec un peux pres  345 characteres et 136 mots",
-        "category_conclusion_103_33":lambda category:"generer un text conclusion  apropos "+category+" avec un peux pres  103 characteres et 33 mots"
-       }
-lescategories=eval(chat_with_gpt("generer un code list python de 6 categories du sujet de condoleances sans descrition ou commentaires sans declaration variable"))
-lestext={}
-for i in lescategories:
- categories["name"]=i
- categories["name"]= chat_with_gpt(categories["category_description_119_15"](i))
- texts={}   
- for j in prompt.keys():    
-   if not "answer" in j:  
-    texts[j]=chat_with_gpt(prompt[j](i))
-   else:
-    texts[j]=chat_with_gpt(prompt[j](list(texts.values())[-1]))  
- lestext[i]["texts"]=texts   
+
+import pickle
+filename="datas2.pickle"
+with open(filename, 'rb') as file:
+        global_vars = pickle.load(file)
+for var_name, var_value in global_vars.items():
+        globals()[var_name] = var_value
 
 
 
