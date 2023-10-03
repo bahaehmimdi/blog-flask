@@ -84,149 +84,19 @@
           <div class="col-md-12">
             <div id="myCarousel" class="carousel slide projects-carousel">
               <!-- Carousel items -->
-              <div class="carousel-inner">
-                <div class="item active">
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <a
-                        href="{{ url_for('work', category=categories0["name"]) }}"
-                        title=""
-                        class="black-image-project-hover"
-                      >
-                        <img
-                          src="static/assets/images/{{categories0["image"]}}"
-                          alt=""
-                          class="img-responsive"
-                        />
-                      </a>
-                      <div class="card-container card-container-lg">
-                        <h4>001/006</h4>
-                        <h3>{{categories0["name"]}}</h3>
-                        <p>
-                          {{categories0["description"]}}
-                        </p>
-                        <a href="{{ url_for('work', category=categories0["name"]) }}"
-                          title="" class="btn btn-default"
-                          >Discover</a
-                        >
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <a
-                        href="{{ url_for('work', category=categories1["name"]) }}"
-                        title=""
-                        class="black-image-project-hover"
-                      >
-                        <img
-                          src="static/assets/images/{{categories1["image"]}}"
-                          alt=""
-                          class="img-responsive"
-                        />
-                      </a>
-                      <div class="card-container card-container-lg">
-                        <h4>002/006</h4>
-                        <h3>{{categories1["name"]}}</h3>
-                        <p>
-                         {{categories1["description"]}}
-                        </p>
-                        <a href="{{ url_for('work', category=categories1["name"]) }}" title="" class="btn btn-default"
-                          >Discover</a
-                        >
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <a
-                        href="{{ url_for('work', category=categories2["name"]) }}"
-                        title=""
-                        class="black-image-project-hover"
-                      >
-                        <img
-                          src="static/assets/images/{{categories2["image"]}}"
-                          alt=""
-                          class="img-responsive"
-                        />
-                      </a>
-                      <div class="card-container card-container-lg">
-                        <h4>003/006</h4>
-                        <h3>{{categories2["name"]}}</h3>
-                        <p>
-                          {{categories2["description"]}}
-                        </p>
-                        <a href="{{ url_for('work', category=categories2["name"]) }}" title="" class="btn btn-default"
-                          >Discover</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <!--/row-->
+              {% for category in categories %}
+            <div class="col-sm-4">
+                <a href="{{ url_for('work', category=category['name']) }}" title="" class="black-image-project-hover">
+                    <img src="static/assets/images/{{ category['image'] }}" alt="" class="img-responsive" />
+                </a>
+                <div class="card-container card-container-lg">
+                    <h4>{{ loop.index }}/006</h4>
+                    <h3>{{ category['name'] }}</h3>
+                    <p>{{ category['description'] }}</p>
+                    <a href="{{ url_for('work', category=category['name']) }}" title="" class="btn btn-default">Discover</a>
                 </div>
-                <!--/item-->
-                <div class="item">
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <a href="./work.html" class="black-image-project-hover">
-                        <img
-                          src="static/assets/images/{{categories3["image"]}}"
-                          alt="Image"
-                          class="img-responsive"
-                        />
-                      </a>
-                      <div class="card-container">
-                        <h4>004/006</h4>
-                        <h3>{{categories3["name"]}}</h3>
-                        <p>
-                          {{categories3["description"]}}
-                        </p>
-                        <a href="{{ url_for('work', category=categories3["name"]) }}" class="btn btn-default"
-                          >Discover</a
-                        >
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <a href="{{ url_for('work', category=categories4["name"]) }}" class="black-image-project-hover">
-                        <img
-                          src="static/assets/images/{{categories4["image"]}}"
-                          alt="Image"
-                          class="img-responsive"
-                        />
-                      </a>
-                      <div class="card-container">
-                        <h4>005/006</h4>
-                        <h3>{{categories4["name"]}}</h3>
-                        <p>
-                          {{categories4["description"]}}
-                        </p>
-                        <a href="{{ url_for('work', category=categories4["name"]) }}" class="btn btn-default"
-                          >Discover</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                      <a href="{{ url_for('work', category=categories5["name"]) }}" class="black-image-project-hover">
-                        <img
-                          src="static/assets/images/{{categories5["image"]}}"
-                          alt="Image"
-                          class="img-responsive"
-                        />
-                      </a>
-                      <div class="card-container">
-                        <h4>006/006</h4>
-                        <h3>{{categories5["name"]}}</h3>
-                        <p>
-                          {{categories5["description"]}}
-                        </p>
-                        <a href="{{ url_for('work', category=categories5["name"]) }}" class="btn btn-default"
-                          >Discover</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <!--/row-->
-                </div>
-
-                <!--/item-->
-              </div>
+            </div>
+            {% endfor %}
               <!--/carousel-inner-->
               <a
                 class="left carousel-control"
