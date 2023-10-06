@@ -1,7 +1,9 @@
 import csv
 from flask import Flask, render_template, url_for, request, redirect
-app = Flask(__name__)
+from flask_cors import CORS  # Import the CORS module
 
+app = Flask(__name__)
+CORS(app)
 import time
 def get_data(json_file):
     try:
