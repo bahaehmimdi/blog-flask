@@ -10,29 +10,30 @@ def get_data(json_file):
         with open(json_file, 'r') as file:
             return json.load(file)
     except FileNotFoundError:
-        return {"formulae": []}
+        return {"formulaires": []}
 
 def save_to_json(json_file, data):
     with open(json_file, 'w') as file:
         json.dump(data, file, indent=2)
 
-@app.route('/get_formulae', methods=['GET'])
-def get_formulae():
+@app.route('/get_formulaires', methods=['GET'])
+def get_formulaires():
     json_file = request.args.get('json_file', 'data.json')
     data = get_data(json_file)
-    return jsonify({'formulae': data['formulae']})
+    return jsonify({'formulaires': data['formulaires']})
 
-@app.route('/update_formulae', methods=['POST'])
-def update_formulae():
+@app.route('/update_formulaires', methods=['POST'])
+def update_formulaires():
     content = request.json
     json_file = content.get('json_file', 'data.json')
-    formulae = content.get('formulae', [])
+    formulaires = content.get('formulaires', [])
 
     data = get_data(json_file)
-    data['formulae'] = formulae
+    data['formulaires'].extend(formulaires)
     save_to_json(json_file, data)
 
-    return jsonify({'message': 'Formulae updated successfully'})
+    return jsonify({'message': 'Formulaires updated successfully'})
+
     
 categories = [
     {"name": "Category 1", "description": "Description 1", "image": "work01-hover.jpg"},
