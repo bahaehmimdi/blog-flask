@@ -3,7 +3,33 @@ from flask import Flask, render_template, url_for, request, redirect
 app = Flask(__name__)
 
 import time
+def get_data(json_file):
+    try:
+        with open(json_file, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {"formulae": []}
 
+def save_to_json(json_file, data):
+    with open(json_file, 'w+') as file:
+        json.dump(data, file, indent=2)
+
+@app.route('/add_formula', methods=['POST'])
+def add_formula():
+    content = request.json
+    formula = content.get('formula')
+    json_file = content.get('json_file', 'data.json')
+
+    # Check if the JSON file exists, if not, create a new one
+    if not os.path.exists(json_file):
+        data = {"formulae": []}
+    else:
+        data = get_data(json_file)
+
+    data['formulae'].append({'formula': formula})
+    save_to_json(json_file, data)
+
+    return jsonify({'message': 'Formula added successfully'})
     
 categories = [
     {"name": "Category 1", "description": "Description 1", "image": "work01-hover.jpg"},
