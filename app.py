@@ -11,25 +11,26 @@ def get_data(json_file):
         return {"formulae": []}
 
 def save_to_json(json_file, data):
-    with open(json_file, 'w+') as file:
+    with open(json_file, 'w') as file:
         json.dump(data, file, indent=2)
 
-@app.route('/add_formula', methods=['POST'])
-def add_formula():
+@app.route('/get_formulae', methods=['GET'])
+def get_formulae():
+    json_file = request.args.get('json_file', 'data.json')
+    data = get_data(json_file)
+    return jsonify({'formulae': data['formulae']})
+
+@app.route('/update_formulae', methods=['POST'])
+def update_formulae():
     content = request.json
-    formula = content.get('formula')
     json_file = content.get('json_file', 'data.json')
+    formulae = content.get('formulae', [])
 
-    # Check if the JSON file exists, if not, create a new one
-    if not os.path.exists(json_file):
-        data = {"formulae": []}
-    else:
-        data = get_data(json_file)
-
-    data['formulae'].append({'formula': formula})
+    data = get_data(json_file)
+    data['formulae'] = formulae
     save_to_json(json_file, data)
 
-    return jsonify({'message': 'Formula added successfully'})
+    return jsonify({'message': 'Formulae updated successfully'})
     
 categories = [
     {"name": "Category 1", "description": "Description 1", "image": "work01-hover.jpg"},
