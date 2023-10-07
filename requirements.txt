@@ -10,3 +10,4 @@ gunicorn
 openai
 Flask-Cors
 pandas
+openpyxl
