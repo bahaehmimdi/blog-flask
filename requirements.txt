@@ -9,3 +9,4 @@ Werkzeug==0.16.0
 gunicorn
 openai
 Flask-Cors
+pandas
