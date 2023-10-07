@@ -5,34 +5,49 @@ import json
 app = Flask(__name__)
 CORS(app)
 import time
-def get_data(json_file):
+import pandas as pd
+import os
+# Global variable to store data
+#data = pd.DataFrame()
+
+# Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+def save_to_excel(file_name, excel_data):
+    file_path = os.path.join(script_dir, file_name)
+    excel_data.to_excel(file_path, index=False)
+    print(f"Data saved to {file_path}")
+
+def read_from_excel(file_name):
+    global data
+    file_path = os.path.join(script_dir, file_name)
     try:
-        with open(json_file, 'r') as file:
-            return json.load(file)
+        return pd.read_excel(file_path)
+        print(f"Data read from {file_path}")
     except FileNotFoundError:
-        return {"formulaires": []}
+        print(f"File {file_path} not found. Creating a new one.")
+        data.to_excel(file_path, index=False)
+        return pd.read_excel(file_path)
+# Flask route to save data
+@app.route('/save_data', methods=['POST'])
+def save_data():
+    file_name = request.args.get('filename')
+    file = request.files['file']
 
-def save_to_json(json_file, data):
-    with open(json_file, 'w') as file:
-        json.dump(data, file, indent=2)
+    try:
+        excel_data = pd.read_excel(file)
+        save_to_excel(file_name, excel_data)
+        return jsonify({"message": f"Data saved to {file_name}"}), 200
+    except Exception as e:
+        return jsonify({"error": f"Failed to process Excel file. {str(e)}"}), 400
 
-@app.route('/get_formulaires', methods=['GET'])
-def get_formulaires():
-    json_file = request.args.get('json_file', 'data.json')
-    data = get_data(json_file)
-    return jsonify({'formulaires': data['formulaires']})
+# Flask route to get the data
+@app.route('/get_data', methods=['GET'])
+def get_data():
+    file_name = request.args.get('filename')
+    
+    return jsonify(read_from_excel(file_name).to_dict(orient='records'))
 
-@app.route('/update_formulaires', methods=['POST'])
-def update_formulaires():
-    content = request.json
-    json_file = content.get('json_file', 'data.json')
-    formulaires = content.get('formulaires', [])
-
-    data = get_data(json_file)
-    data['formulaires'].extend(formulaires)
-    save_to_json(json_file, data)
-
-    return jsonify({'message': 'Formulaires updated successfully'})
 
     
 categories = [
