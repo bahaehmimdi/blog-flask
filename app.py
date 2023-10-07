@@ -11,7 +11,7 @@ import os
 #data = pd.DataFrame()
 
 # Get the directory of the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.abspath(__file__))+"/static"
 
 def save_to_excel(file_name, excel_data):
     file_path = os.path.join(script_dir, file_name)
