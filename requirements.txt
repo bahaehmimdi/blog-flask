@@ -11,3 +11,4 @@ openai
 Flask-Cors
 pandas
 openpyxl
+beautifulsoup4
