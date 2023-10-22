@@ -5,14 +5,40 @@ import json
 app = Flask(__name__)
 CORS(app)
 import time
-import pandas as pd
+import os
+
+import hashlib
+import requests
+from flask import Flask, render_template
+import random
+from bs4 import BeautifulSoup
+import wget
 import os
 # Global variable to store data
 #data = pd.DataFrame()
 
 # Get the directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))+"/static"
+def fetch_pexels_image(query):
+    search_url = f'https://www.google.com/search?q={query}&tbm=isch'
+    response = requests.get(search_url)
 
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        # Extract image URLs from the search results (using data-src attribute)
+        image_tags = soup.find_all('img')
+        for image_tag in image_tags:
+            
+            image_url = image_tag['src']
+            if  image_url.startswith('http'):
+                nu=random.randint(999999,99999999)
+                
+                wget.download(image_url,out="static/"+str(nu)+'.png')
+                
+                return "/static/"+str(nu)+".png"
+    
+    # Return a placeholder image URL if no image with data-src is found
+    return 'https://via.placeholder.com/150'
 def save_to_excel(file_name, excel_data):
     file_path = os.path.join(script_dir, file_name)
     excel_data.to_excel(file_path, index=False)
@@ -62,7 +88,7 @@ categories = [
 ] 
 
 import pickle
-filename="datas2.pickle"
+filename="datas3.pickle"
 with open(filename, 'rb') as file:
         global_vars = pickle.load(file)
 for var_name, var_value in global_vars.items():
@@ -77,9 +103,11 @@ def homepage():
     return render_template('index.html')
 @app.route('/work')
 def work():
-    category = request.args.get('category')
-    txts=lestext[category]
-    return render_template('work.html',category=category,category_first_description_244_73=txts["category_first_description_244_73"],category_second_description_103_30=txts["category_second_description_103_30"],category_first_question_28_5=txts["category_first_question_28_5"],category_first_answer_276_94=txts["category_first_answer_276_94"],category_second_question_41_6=txts["category_first_question_41_6"],category_second_answer_345_136=txts["category_second_answer_345_136"],category_conclusion_103_33=txts["category_conclusion_103_33"],category_introduction_103_33=["category_introduction_103_33"])
+     category = request.args.get('category')
+     sections=lestext[category]
+
+ #   return render_template('work.html',category=category,category_first_description_244_73=txts["category_first_description_244_73"],category_second_description_103_30=txts["category_second_description_103_30"],category_first_question_28_5=txts["category_first_question_28_5"],category_first_answer_276_94=txts["category_first_answer_276_94"],category_second_question_41_6=txts["category_first_question_41_6"],category_second_answer_345_136=txts["category_second_answer_345_136"],category_conclusion_103_33=txts["category_conclusion_103_33"],category_introduction_103_33=["category_introduction_103_33"])
+     return render_template('work.html',category=category, sections=sections) 
 @app.route('/works')
 def works():
    try: 
