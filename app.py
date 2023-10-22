@@ -16,7 +16,14 @@ import wget
 import os
 # Global variable to store data
 #data = pd.DataFrame()
+import zipfile
+import os
 
+zip_file_name = "/static/static.zip"
+extracted_dir = "/static/"
+
+with zipfile.ZipFile(zip_file_name, 'r') as zip_ref:
+    zip_ref.extractall(extracted_dir)
 # Get the directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))+"/static"
 def fetch_pexels_image(query):
