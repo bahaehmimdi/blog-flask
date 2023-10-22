@@ -19,8 +19,8 @@ import os
 import zipfile
 import os
 
-zip_file_name = "/static/static.zip"
-extracted_dir = "/static/"
+zip_file_name = "static/static.zip"
+extracted_dir = "static/"
 
 with zipfile.ZipFile(zip_file_name, 'r') as zip_ref:
     zip_ref.extractall(extracted_dir)
